@@ -30,7 +30,16 @@ h1, h2, h3 {
 """, unsafe_allow_html=True)
 
 # ---------- OPENAI CLIENT ----------
-key='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'
+load_dotenv()
+import os
+from dotenv import load_dotenv
+from openai import OpenAI
+
+key =  st.secrets.get("OPENAI_API_KEY")
+
+if not key:
+    st.error("❌ OpenAI API key not found")
+    st.stop()
 
 client = OpenAI(api_key=key)
 
